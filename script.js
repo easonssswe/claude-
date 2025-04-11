@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('orientationchange', function() {
             if (window.orientation === 90 || window.orientation === -90) {
                 rotateDevice.style.display = 'none';
+                // 屏幕方向变化时重置校准
+                initialBeta = null;
+                initialGamma = null;
+                isCalibrated = false;
+                setProgress(0);
             } else {
                 rotateDevice.style.display = 'flex';
             }
@@ -171,19 +176,42 @@ document.addEventListener('DOMContentLoaded', function() {
             return avgLoweringSpeed < avgRisingSpeed * 0.8;
         }
         
+        // 获取调整后的传感器数据
+        function getAdjustedSensorData(event) {
+            // 根据屏幕方向调整传感器数据
+            let adjustedBeta = event.beta;
+            let adjustedGamma = event.gamma;
+            
+            // 横屏模式下交换beta和gamma的角色
+            if (window.orientation === 90) {
+                // 右侧横屏
+                adjustedBeta = event.gamma;
+                adjustedGamma = -event.beta;
+            } else if (window.orientation === -90) {
+                // 左侧横屏
+                adjustedBeta = -event.gamma;
+                adjustedGamma = event.beta;
+            }
+            
+            return { beta: adjustedBeta, gamma: adjustedGamma };
+        }
+        
         // 设备方向变化事件
         window.addEventListener('deviceorientation', function(event) {
-            if (!isCalibrated && event.beta !== null && event.gamma !== null) {
-                initialBeta = event.beta;
-                initialGamma = event.gamma;
+            // 获取根据屏幕方向调整后的传感器数据
+            const adjustedData = getAdjustedSensorData(event);
+            
+            if (!isCalibrated && adjustedData.beta !== null && adjustedData.gamma !== null) {
+                initialBeta = adjustedData.beta;
+                initialGamma = adjustedData.gamma;
                 isCalibrated = true;
                 return;
             }
             
             if (isCalibrated && repCount < 3) {
                 // 计算角度变化
-                let betaDiff = event.beta - initialBeta;
-                let gammaDiff = event.gamma - initialGamma;
+                let betaDiff = adjustedData.beta - initialBeta;
+                let gammaDiff = adjustedData.gamma - initialGamma;
                 
                 // 使用beta（前后倾斜）作为主要测量值
                 let angle = Math.abs(betaDiff);
