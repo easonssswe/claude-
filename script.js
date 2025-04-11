@@ -58,10 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const radius = circle.r.baseVal.value;
         const circumference = radius * 2 * Math.PI;
         circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference;
         
         // 更新进度环
         function setProgress(percent) {
-            const offset = circumference - (percent / 100 * circumference);
+            // 确保百分比在0-100之间
+            percent = Math.min(100, Math.max(0, percent));
+            
+            // 计算stroke-dashoffset值
+            // 注意：这里使用(1 - percent/100)是因为我们希望0%时圆环完全不可见，100%时完全可见
+            const offset = circumference * (1 - percent / 100);
             progressRing.style.strokeDashoffset = offset;
             progressText.textContent = `${Math.round(percent)}%`;
             currentProgress = percent;
