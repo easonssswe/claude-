@@ -16,20 +16,21 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
     border-bottom: 1px solid #e0e0e0;
+    height: 50px;
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #2c3e50;
 }
 
@@ -37,10 +38,10 @@ h1 {
     background-color: #4CAF50;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: background-color 0.3s;
 }
 
@@ -49,11 +50,11 @@ h1 {
 }
 
 .counter {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
     color: #2c3e50;
     background-color: #e9ecef;
-    padding: 8px 15px;
+    padding: 6px 12px;
     border-radius: 20px;
 }
 
@@ -62,6 +63,7 @@ h1 {
     flex: 1;
     justify-content: space-between;
     align-items: stretch;
+    height: calc(100vh - 60px);
 }
 
 .left-panel, .center-panel, .right-panel {
@@ -70,15 +72,16 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 5px;
+    max-height: 100%;
 }
 
 .animation-guide {
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     background-color: white;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -86,14 +89,16 @@ h1 {
 .animation-guide img {
     width: 100%;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    max-height: calc(100vh - 180px);
+    object-fit: contain;
 }
 
 .instruction {
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #555;
-    line-height: 1.5;
+    line-height: 1.3;
 }
 
 .progress-container {
@@ -107,8 +112,9 @@ h1 {
     position: relative;
     background-color: white;
     border-radius: 50%;
-    padding: 10px;
+    padding: 5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
 }
 
 .progress-ring-circle-bg {
@@ -137,31 +143,58 @@ h1 {
 .feedback-panel {
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     height: 100%;
+    max-height: calc(100vh - 80px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .feedback-panel h2 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
     color: #2c3e50;
     border-bottom: 2px solid #4CAF50;
-    padding-bottom: 8px;
+    padding-bottom: 5px;
 }
 
 #feedbackContent {
-    line-height: 1.6;
+    line-height: 1.4;
     white-space: pre-line;
     color: #555;
+    font-size: 0.95rem;
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
 }
 
 /* 横屏样式 */
 @media (orientation: landscape) {
+    .container {
+        padding: 5px 10px;
+    }
+    
+    .header {
+        height: 40px;
+        margin-bottom: 5px;
+    }
+    
     .main-content {
-        height: calc(100vh - 80px);
+        height: calc(100vh - 50px);
+    }
+    
+    .progress-ring-container svg {
+        width: 130px;
+        height: 130px;
+        viewBox: 0 0 130 130;
+    }
+    
+    .animation-guide {
+        max-height: calc(100vh - 60px);
+    }
+    
+    .feedback-panel {
+        max-height: calc(100vh - 60px);
     }
 }
 
@@ -198,27 +231,5 @@ h1 {
 @media (orientation: portrait) {
     .rotate-device {
         display: flex;
-    }
-}
-
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column;
-    }
-    
-    .left-panel, .center-panel, .right-panel {
-        width: 100%;
-        padding: 10px;
-    }
-    
-    .header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .counter {
-        margin: 10px 0;
     }
 }
