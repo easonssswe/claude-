@@ -3,46 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>二头弯举训练助手</title>
+    <title>二头肌训练助手</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>二头弯举训练助手</h1>
-            <button id="resetBtn">重置位置</button>
+        <header class="header">
+            <h1>二头肌训练助手</h1>
             <div class="counter">完成次数: <span id="repCount">0</span>/3</div>
-        </div>
+            <button id="resetBtn">重置位置</button>
+        </header>
         
         <div class="main-content">
-            <div class="progress-container">
-                <div class="progress-ring-container">
-                    <svg class="progress-ring" width="150" height="150">
-                        <circle class="progress-ring-circle-bg" cx="75" cy="75" r="65"></circle>
-                        <circle class="progress-ring-circle" cx="75" cy="75" r="65"></circle>
-                        <text id="progress-text" x="75" y="80" text-anchor="middle">0%</text>
-                    </svg>
+            <div class="left-panel">
+                <div class="animation-guide">
+                    <img src="bicep-curl.gif" alt="二头弯举示范">
+                    <p class="instruction">请将手机放在手臂上，然后进行二头弯举动作</p>
                 </div>
             </div>
             
-            <div class="animation-container">
-                <div class="animation-guide">
-                    <img id="bicepAnimation" src="bicep-curl.gif" alt="二头弯举动画指导">
-                </div>
-                <div class="instruction">
-                    <p>请握住手机，保持手臂伸直，然后进行二头弯举动作</p>
+            <div class="center-panel">
+                <div class="progress-container">
+                    <div class="progress-ring-container">
+                        <svg width="150" height="150" viewBox="0 0 150 150">
+                            <circle class="progress-ring-circle-bg" cx="75" cy="75" r="65"></circle>
+                            <circle class="progress-ring-circle" cx="75" cy="75" r="65"></circle>
+                            <text id="progress-text" x="75" y="80" text-anchor="middle">0%</text>
+                        </svg>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="feedback-panel" id="feedbackPanel">
-            <h2>动作分析</h2>
-            <div id="feedbackContent">
-                请完成一次动作以获取分析
+            
+            <div class="right-panel">
+                <div class="feedback-panel">
+                    <h2>动作分析</h2>
+                    <div id="feedbackContent">请完成一次动作以获取分析</div>
+                </div>
             </div>
         </div>
     </div>
-    
     <script src="script.js"></script>
 </body>
 </html>
