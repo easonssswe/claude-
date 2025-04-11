@@ -77,7 +77,7 @@ h1 {
     stroke-dashoffset: 408;
     transform: rotate(-90deg);
     transform-origin: 75px 75px;
-    transition: stroke-dashoffset 0.3s;
+    transition: stroke-dashoffset 0.3s, stroke 0.3s;
 }
 
 #progress-text {
@@ -126,6 +126,7 @@ h1 {
 
 #feedbackContent {
     line-height: 1.5;
+    white-space: pre-line;
 }
 
 /* 横屏样式 */
