@@ -181,19 +181,24 @@ document.addEventListener('DOMContentLoaded', function() {
             // 根据屏幕方向调整传感器数据
             let adjustedBeta = event.beta;
             let adjustedGamma = event.gamma;
+            let adjustedAlpha = event.alpha;
             
-            // 横屏模式下交换beta和gamma的角色
+            // 横屏模式下需要使用不同的轴来检测二头弯举动作
             if (window.orientation === 90) {
-                // 右侧横屏
-                adjustedBeta = event.gamma;
+                // 右侧横屏 - 使用gamma（左右倾斜）作为主要检测轴
+                adjustedBeta = -event.gamma; // 使用负值使方向一致
                 adjustedGamma = -event.beta;
             } else if (window.orientation === -90) {
-                // 左侧横屏
-                adjustedBeta = -event.gamma;
+                // 左侧横屏 - 使用gamma（左右倾斜）作为主要检测轴
+                adjustedBeta = event.gamma;
                 adjustedGamma = event.beta;
             }
             
-            return { beta: adjustedBeta, gamma: adjustedGamma };
+            return { 
+                beta: adjustedBeta, 
+                gamma: adjustedGamma,
+                alpha: adjustedAlpha
+            };
         }
         
         // 设备方向变化事件
@@ -213,8 +218,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 let betaDiff = adjustedData.beta - initialBeta;
                 let gammaDiff = adjustedData.gamma - initialGamma;
                 
-                // 使用beta（前后倾斜）作为主要测量值
-                let angle = Math.abs(betaDiff);
+                // 根据屏幕方向选择正确的轴来检测二头弯举动作
+                let angle;
+                if (window.orientation === 0 || window.orientation === 180) {
+                    // 竖屏模式 - 使用beta（前后倾斜）
+                    angle = Math.abs(betaDiff);
+                } else {
+                    // 横屏模式 - 使用beta（实际上是调整后的gamma）
+                    angle = Math.abs(betaDiff);
+                }
                 
                 // 记录角度和时间
                 if (!isCompleted) {
