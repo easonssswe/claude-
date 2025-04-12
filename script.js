@@ -1,59 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化教程和帮助按钮
+    // 初始化教程弹窗
     const tutorialOverlay = document.getElementById('tutorial-overlay');
     const startBtn = document.getElementById('start-btn');
     const helpBtn = document.getElementById('helpBtn');
-    const progressStatus = document.getElementById('progress-status');
-    const achievementPopup = document.getElementById('achievement-popup');
-    const achievementTitle = document.getElementById('achievement-title');
-    const achievementDesc = document.getElementById('achievement-desc');
     
-    // 检查是否首次访问
-    if (!localStorage.getItem('tutorialShown')) {
+    // 每次打开都显示教程弹窗
+    if (tutorialOverlay) {
         tutorialOverlay.style.display = 'flex';
-        localStorage.setItem('tutorialShown', 'true');
-    } else {
-        tutorialOverlay.style.display = 'none';
     }
     
     // 开始按钮点击事件
-    startBtn.addEventListener('click', function() {
-        tutorialOverlay.style.display = 'none';
-    });
+    if (startBtn) {
+        startBtn.addEventListener('click', function() {
+            tutorialOverlay.style.display = 'none';
+        });
+    }
     
     // 帮助按钮点击事件
-    helpBtn.addEventListener('click', function() {
-        tutorialOverlay.style.display = 'flex';
-    });
-    
-    // 显示成就弹窗
-    function showAchievement(title, desc) {
-        achievementTitle.textContent = title;
-        achievementDesc.textContent = desc;
-        achievementPopup.classList.add('show');
-        
-        setTimeout(() => {
-            achievementPopup.classList.remove('show');
-        }, 3000);
+    if (helpBtn) {
+        helpBtn.addEventListener('click', function() {
+            tutorialOverlay.style.display = 'flex';
+        });
     }
     
-    // 更新进度状态提示
-    function updateProgressStatus(percent) {
-        if (percent < 10) {
-            progressStatus.textContent = "准备开始";
-            progressStatus.style.color = "#555";
-        } else if (percent < 40) {
-            progressStatus.textContent = "上举中...";
-            progressStatus.style.color = "#4CAF50";
-        } else if (percent < 80) {
-            progressStatus.textContent = "继续上举!";
-            progressStatus.style.color = "#FFC107";
-        } else {
-            progressStatus.textContent = "即将到顶点!";
-            progressStatus.style.color = "#F44336";
-        }
-    }
-
     // 检查设备是否支持所需的传感器
     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
         // 添加横屏提示
