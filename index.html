@@ -3,49 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>二头肌训练助手</title>
+    <title>二头肌弯举训练助手</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- 初始引导遮罩 -->
-    <div id="tutorial-overlay" class="tutorial-overlay">
+    <!-- 教程弹窗 -->
+    <div id="tutorial-overlay" class="overlay">
         <div class="tutorial-content">
-            <h2>使用指南 <i class="fas fa-dumbbell"></i></h2>
-            <div class="tutorial-steps">
-                <div class="tutorial-step">
-                    <div class="step-number">1</div>
-                    <p>将手机横向放置在您的上臂上</p>
-                </div>
-                <div class="tutorial-step">
-                    <div class="step-number">2</div>
-                    <p>点击"重置位置"按钮校准初始位置</p>
-                </div>
-                <div class="tutorial-step">
-                    <div class="step-number">3</div>
-                    <p>保持手臂伸直，准备开始训练</p>
-                </div>
-                <div class="tutorial-step">
-                    <div class="step-number">4</div>
-                    <p>完成二头弯举动作，环形进度条会实时显示</p>
-                </div>
+            <h2>二头肌弯举训练助手</h2>
+            <div class="tutorial-step">
+                <img src="tutorial-1.png" alt="步骤1">
+                <p>1. 点击"重置位置"按钮，保持手臂伸直</p>
             </div>
-            <button id="start-btn" class="start-btn">开始训练</button>
-        </div>
-    </div>
-    
-    <!-- 成就提示 -->
-    <div id="achievement-popup" class="achievement-popup">
-        <div class="achievement-content">
-            <i class="fas fa-trophy achievement-icon"></i>
-            <h3 id="achievement-title">完成一次动作！</h3>
-            <p id="achievement-desc">继续保持良好状态</p>
+            <div class="tutorial-step">
+                <img src="tutorial-2.png" alt="步骤2">
+                <p>2. 弯曲手肘，将哑铃举向肩膀</p>
+            </div>
+            <div class="tutorial-step">
+                <img src="tutorial-3.png" alt="步骤3">
+                <p>3. 缓慢放下哑铃回到起始位置</p>
+            </div>
+            <div class="tutorial-step">
+                <img src="tutorial-4.png" alt="步骤4">
+                <p>4. 完成3次动作后查看分析结果</p>
+            </div>
+            <button id="start-btn" class="btn">开始训练</button>
         </div>
     </div>
 
+    <!-- 主界面 -->
     <div class="container">
-        <!-- 其他内容 -->
+        <header>
+            <h1>二头肌弯举训练助手</h1>
+            <button id="helpBtn" class="btn help-btn">帮助</button>
+        </header>
+        
+        <div class="main-content">
+            <div class="progress-container">
+                <svg class="progress-ring" width="200" height="200">
+                    <circle class="progress-ring-circle-bg" stroke="#ddd" stroke-width="10" fill="transparent" r="80" cx="100" cy="100"/>
+                    <circle class="progress-ring-circle" stroke="#4CAF50" stroke-width="10" fill="transparent" r="80" cx="100" cy="100"/>
+                    <text id="progress-text" x="100" y="100" text-anchor="middle" dominant-baseline="middle" font-size="24">0%</text>
+                    <text id="progress-status" x="100" y="130" text-anchor="middle" dominant-baseline="middle" font-size="14">准备开始</text>
+                </svg>
+                
+                <div class="rep-counter">
+                    <span>次数: </span>
+                    <span id="repCount">0</span>
+                    <span>/3</span>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button id="resetBtn" class="btn">重置位置</button>
+            </div>
+            
+            <div class="feedback-section">
+                <h3>动作分析</h3>
+                <p id="feedbackContent">请完成一次动作以获取分析</p>
+            </div>
+        </div>
     </div>
+    
+    <!-- 成就弹窗 -->
+    <div id="achievement-popup" class="achievement-popup">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-content">
+            <h3 id="achievement-title">成就解锁!</h3>
+            <p id="achievement-desc">您完成了一次完美的二头弯举!</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
