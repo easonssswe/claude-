@@ -127,8 +127,8 @@ h1 {
     fill: transparent;
     stroke: #4CAF50;
     stroke-width: 10;
-    stroke-dasharray: 408;
-    stroke-dashoffset: 408;
+    stroke-dasharray: 408.4;
+    stroke-dashoffset: 408.4;
     transform: rotate(-90deg);
     transform-origin: 75px 75px;
     transition: stroke-dashoffset 0.3s, stroke 0.3s;

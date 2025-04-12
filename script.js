@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // 确保百分比在0-100之间
             percent = Math.min(100, Math.max(0, percent));
             
-            // 计算stroke-dashoffset值
-            const offset = circumference * (1 - percent / 100);
+            // 计算stroke-dashoffset值 - 修复计算方式
+            const offset = circumference - (percent / 100) * circumference;
             progressRing.style.strokeDashoffset = offset;
             progressText.textContent = `${Math.round(percent)}%`;
             currentProgress = percent;
