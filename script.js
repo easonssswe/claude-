@@ -340,107 +340,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     isLowering = true;
                     // 震动提示达到顶点
                     vibrate(200);
-                }
-                
-                // 在文件开头添加以下代码
-                document.addEventListener('DOMContentLoaded', function() {
-                    // 初始化教程和帮助按钮
-                    const tutorialOverlay = document.getElementById('tutorial-overlay');
-                    const startBtn = document.getElementById('start-btn');
-                    const helpBtn = document.getElementById('helpBtn');
-                    const progressStatus = document.getElementById('progress-status');
-                    const achievementPopup = document.getElementById('achievement-popup');
-                    const achievementTitle = document.getElementById('achievement-title');
-                    const achievementDesc = document.getElementById('achievement-desc');
-                    
-                    // 检查是否首次访问
-                    if (!localStorage.getItem('tutorialShown')) {
-                        tutorialOverlay.style.display = 'flex';
-                        localStorage.setItem('tutorialShown', 'true');
-                    } else {
-                        tutorialOverlay.style.display = 'none';
-                    }
-                    
-                    // 开始按钮点击事件
-                    startBtn.addEventListener('click', function() {
-                        tutorialOverlay.style.display = 'none';
-                    });
-                    
-                    // 帮助按钮点击事件
-                    helpBtn.addEventListener('click', function() {
-                        tutorialOverlay.style.display = 'flex';
-                    });
-                    
-                    // 显示成就弹窗
-                    function showAchievement(title, desc) {
-                        achievementTitle.textContent = title;
-                        achievementDesc.textContent = desc;
-                        achievementPopup.classList.add('show');
-                        
-                        setTimeout(() => {
-                            achievementPopup.classList.remove('show');
-                        }, 3000);
-                    }
-                    
-                    // 更新进度状态提示
-                    function updateProgressStatus(percent) {
-                        if (percent < 10) {
-                            progressStatus.textContent = "准备开始";
-                            progressStatus.style.color = "#555";
-                        } else if (percent < 40) {
-                            progressStatus.textContent = "上举中...";
-                            progressStatus.style.color = "#4CAF50";
-                        } else if (percent < 80) {
-                            progressStatus.textContent = "继续上举!";
-                            progressStatus.style.color = "#FFC107";
-                        } else {
-                            progressStatus.textContent = "即将到顶点!";
-                            progressStatus.style.color = "#F44336";
-                        }
-                    }
-                
-                    // 在现有的setProgress函数中添加以下代码
-                    const originalSetProgress = setProgress;
-                    window.setProgress = function(percent) {
-                        originalSetProgress(percent);
-                        updateProgressStatus(percent);
-                    };
-                
-                    // 在现有的震动函数后添加以下代码
-                    // 修改现有的设备方向变化事件处理中的代码
-                    // 在完成一次动作的部分添加成就显示
-                    
-                    // 找到这段代码:
-                    // if (percent < 10 && !isRising && isLowering) {
-                    //     isLowering = false;
-                    //     endTime = Date.now();
-                    //     repCount++;
-                    //     repCountElement.textContent = repCount;
-                    //     
-                    //     // 震动提示完成一次动作
-                    //     vibrate(300);
-                    //     
-                    //     // 分析动作
-                    //     isCompleted = true;
-                    //     analyzeMovement();
-                    
-                    // 在analyzeMovement()后添加:
-                    // 显示成就
-                    // if (speedConsistency > 0.8 && hasEccentricControl && fullRangeOfMotion) {
-                    //     showAchievement("完美动作!", "您的动作非常标准");
-                    // } else if (speedConsistency > 0.6 || hasEccentricControl || fullRangeOfMotion) {
-                    //     showAchievement("动作完成!", "还有改进空间");
-                    // } else {
-                    //     showAchievement("动作已记录", "请查看分析建议");
-                    // }
                     
                     // 添加进度环脉动效果
-                    // 在percent > 90时:
-                    // progressRing.classList.add('pulse');
-                    // setTimeout(() => {
-                    //     progressRing.classList.remove('pulse');
-                    // }, 500);
-                });
+                    progressRing.classList.add('pulse');
+                    setTimeout(() => {
+                        progressRing.classList.remove('pulse');
+                    }, 500);
+                }
+                
+                if (percent < 10 && !isRising && isLowering) {
+                    isLowering = false;
+                    endTime = Date.now();
+                    repCount++;
+                    repCountElement.textContent = repCount;
+                    
+                    // 震动提示完成一次动作
+                    vibrate(300);
+                    
+                    // 分析动作
+                    isCompleted = true;
+                    analyzeMovement();
                     
                     // 重置数据，准备下一次动作
                     if (repCount < 3) {
