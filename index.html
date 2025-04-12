@@ -5,13 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>二头肌训练助手</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <!-- 初始引导遮罩 -->
+    <div id="tutorial-overlay" class="tutorial-overlay">
+        <div class="tutorial-content">
+            <h2>使用指南 <i class="fas fa-dumbbell"></i></h2>
+            <div class="tutorial-steps">
+                <div class="tutorial-step">
+                    <div class="step-number">1</div>
+                    <p>将手机横向放置在您的上臂上</p>
+                </div>
+                <div class="tutorial-step">
+                    <div class="step-number">2</div>
+                    <p>点击"重置位置"按钮校准初始位置</p>
+                </div>
+                <div class="tutorial-step">
+                    <div class="step-number">3</div>
+                    <p>保持手臂伸直，准备开始训练</p>
+                </div>
+                <div class="tutorial-step">
+                    <div class="step-number">4</div>
+                    <p>完成二头弯举动作，环形进度条会实时显示</p>
+                </div>
+            </div>
+            <button id="start-btn" class="start-btn">开始训练</button>
+        </div>
+    </div>
+    
+    <!-- 成就提示 -->
+    <div id="achievement-popup" class="achievement-popup">
+        <div class="achievement-content">
+            <i class="fas fa-trophy achievement-icon"></i>
+            <h3 id="achievement-title">完成一次动作！</h3>
+            <p id="achievement-desc">继续保持良好状态</p>
+        </div>
+    </div>
+
     <div class="container">
         <header class="header">
             <h1>二头肌训练助手</h1>
             <div class="counter">完成次数: <span id="repCount">0</span>/3</div>
-            <button id="resetBtn">重置位置</button>
+            <div class="header-buttons">
+                <button id="helpBtn" class="icon-btn"><i class="fas fa-question-circle"></i></button>
+                <button id="resetBtn">重置位置</button>
+            </div>
         </header>
         
         <div class="main-content">
@@ -30,13 +69,14 @@
                             <circle class="progress-ring-circle" cx="75" cy="75" r="65"></circle>
                             <text id="progress-text" x="75" y="80" text-anchor="middle">0%</text>
                         </svg>
+                        <div id="progress-status" class="progress-status"></div>
                     </div>
                 </div>
             </div>
             
             <div class="right-panel">
                 <div class="feedback-panel">
-                    <h2>动作分析</h2>
+                    <h2>动作分析 <i class="fas fa-chart-line"></i></h2>
                     <div id="feedbackContent">请完成一次动作以获取分析</div>
                 </div>
             </div>
