@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const startBtn = document.getElementById('start-btn');
     const helpBtn = document.getElementById('helpBtn');
     
+    // 为每个用户会话创建唯一标识符
+    let sessionId = sessionStorage.getItem('sessionId');
+    if (!sessionId) {
+        sessionId = Date.now().toString() + Math.random().toString(36).substr(2, 9);
+        sessionStorage.setItem('sessionId', sessionId);
+    }
+    
     // 每次打开都显示教程弹窗
     if (tutorialOverlay) {
         tutorialOverlay.style.display = 'flex';
@@ -22,6 +29,43 @@ document.addEventListener('DOMContentLoaded', function() {
             tutorialOverlay.style.display = 'flex';
         });
     }
+    
+    // 显示成就弹窗函数
+    window.showAchievement = function(title, desc) {
+        const achievementPopup = document.getElementById('achievement-popup');
+        const achievementTitle = document.getElementById('achievement-title');
+        const achievementDesc = document.getElementById('achievement-desc');
+        
+        if (achievementPopup && achievementTitle && achievementDesc) {
+            achievementTitle.textContent = title;
+            achievementDesc.textContent = desc;
+            achievementPopup.classList.add('show');
+            
+            setTimeout(() => {
+                achievementPopup.classList.remove('show');
+            }, 3000);
+        }
+    };
+    
+    // 更新进度状态提示
+    window.updateProgressStatus = function(percent) {
+        const progressStatus = document.getElementById('progress-status');
+        if (progressStatus) {
+            if (percent < 10) {
+                progressStatus.textContent = "准备开始";
+                progressStatus.style.color = "#555";
+            } else if (percent < 40) {
+                progressStatus.textContent = "上举中...";
+                progressStatus.style.color = "#4CAF50";
+            } else if (percent < 80) {
+                progressStatus.textContent = "继续上举!";
+                progressStatus.style.color = "#FFC107";
+            } else {
+                progressStatus.textContent = "即将到顶点!";
+                progressStatus.style.color = "#F44336";
+            }
+        }
+    };
     
     // 检查设备是否支持所需的传感器
     if (window.DeviceOrientationEvent && window.DeviceMotionEvent) {
