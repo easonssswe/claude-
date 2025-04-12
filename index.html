@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <!-- 在body开始处添加 -->
     <!-- 初始引导遮罩 -->
     <div id="tutorial-overlay" class="tutorial-overlay">
         <div class="tutorial-content">
@@ -44,50 +43,8 @@
         </div>
     </div>
 
-    <!-- 修改header部分 -->
-    <!-- 将 <button id="resetBtn">重置位置</button> 替换为 -->
-    <div class="header-buttons">
-        <button id="helpBtn" class="icon-btn"><i class="fas fa-question-circle"></i></button>
-        <button id="resetBtn">重置位置</button>
-    </div>
     <div class="container">
-        <header class="header">
-            <h1>二头肌训练助手</h1>
-            <div class="counter">完成次数: <span id="repCount">0</span>/3</div>
-            <div class="header-buttons">
-                <button id="helpBtn" class="icon-btn"><i class="fas fa-question-circle"></i></button>
-                <button id="resetBtn">重置位置</button>
-            </div>
-        </header>
-        
-        <div class="main-content">
-            <div class="left-panel">
-                <div class="animation-guide">
-                    <img src="bicep-curl.gif" alt="二头弯举示范">
-                    <p class="instruction">请将手机放在手臂上，然后进行二头弯举动作</p>
-                </div>
-            </div>
-            
-            <div class="center-panel">
-                <div class="progress-container">
-                    <div class="progress-ring-container">
-                        <svg width="150" height="150" viewBox="0 0 150 150">
-                            <circle class="progress-ring-circle-bg" cx="75" cy="75" r="65"></circle>
-                            <circle class="progress-ring-circle" cx="75" cy="75" r="65"></circle>
-                            <text id="progress-text" x="75" y="80" text-anchor="middle">0%</text>
-                        </svg>
-                        <div id="progress-status" class="progress-status"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="right-panel">
-                <div class="feedback-panel">
-                    <h2>动作分析 <i class="fas fa-chart-line"></i></h2>
-                    <div id="feedbackContent">请完成一次动作以获取分析</div>
-                </div>
-            </div>
-        </div>
+        <!-- 其他内容 -->
     </div>
     <script src="script.js"></script>
 </body>
