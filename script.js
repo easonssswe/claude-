@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rotateDevice = document.createElement('div');
         rotateDevice.className = 'rotate-device';
         rotateDevice.innerHTML = `
-            <img src="rotate-icon.png" alt="旋转设备">
+            <img src="rotate-icon.gif" alt="旋转设备">
             <h2>请将设备横屏使用</h2>
             <p>为了获得最佳体验，请将您的设备旋转至横屏模式</p>
         `;
